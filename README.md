@@ -55,7 +55,7 @@ $alma = new Alma\API\Client($apiKey, ['mode' => Alma\API\Client::TEST_MODE]);
 $alma = new Alma\API\Client($apiKey, ['mode' => Alma\API\Client::LIVE_MODE]);
 ```
 
-3. **Automatic authentication**: The client automatically includes your API key in the `Authorization` header of every request (e.g., `Alma-Auth sk_test_...`). You don't need to manually authenticate or manage sessions.
+3. **Automatic authentication**: The client automatically authenticates every request by adding an `Authorization` header with the value `Alma-Auth sk_test_...` (where `sk_test_...` is your API key). You don't need to manually authenticate or manage sessions.
 
 ### Security notes
 
