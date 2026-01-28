@@ -34,6 +34,35 @@ require_once "path/to/alma-php-client/vendor/autoload.php";
 
 * You should then be able to use Alma as if it was installed with Composer.
 
+Authentication
+--------------
+
+The Alma PHP client uses **API key authentication**. There is no separate authentication endpoint or route to call.
+
+### How it works
+
+1. **Get your API key**: Obtain your API key from the [Alma Dashboard](https://dashboard.getalma.eu)
+   - For testing: use your **test mode API key** (starts with `sk_test_`)
+   - For production: use your **live mode API key** (starts with `sk_live_`)
+
+2. **Initialize the client**: Pass your API key when creating a new client instance:
+
+```php
+// Test mode
+$alma = new Alma\API\Client($apiKey, ['mode' => Alma\API\Client::TEST_MODE]);
+
+// Live mode (default)
+$alma = new Alma\API\Client($apiKey, ['mode' => Alma\API\Client::LIVE_MODE]);
+```
+
+3. **Automatic authentication**: The client automatically authenticates every request by adding an `Authorization` header with the value `Alma-Auth sk_test_...` (where `sk_test_...` is your API key). You don't need to manually authenticate or manage sessions.
+
+### Security notes
+
+- **Keep your API keys secure**: Never commit API keys to version control or expose them in client-side code
+- **Use environment variables**: Store API keys in environment variables or secure configuration files
+- **Separate keys for test and live**: Always use test mode keys during development and testing
+
 Typical usage
 -------------
 
